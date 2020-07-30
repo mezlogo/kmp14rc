@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
-
 plugins {
     kotlin("multiplatform") version "1.4.0-rc"
 }
@@ -8,15 +6,8 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     jcenter()
-    maven {
-        url = uri("https://dl.bintray.com/kotlin/kotlin-eap")
-    }
-    maven {
-        url = uri("https://dl.bintray.com/kotlin/kotlinx")
-    }
-    maven {
-        url = uri("https://dl.bintray.com/kotlin/kotlin-js-wrappers")
-    }
+    maven("https://dl.bintray.com/kotlin/kotlin-eap")
+    maven("https://dl.bintray.com/kotlin/kotlinx")
 }
 kotlin {
     js(IR) {
@@ -25,9 +16,11 @@ kotlin {
         }
     }
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+       //         implementation(kotlin("stdlib-common"))
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8-1.4.0-rc")
+            }
+        }
     }
-}
-tasks.getByName<KotlinWebpack>("jsBrowserProductionWebpack") {
-    outputFileName = "output.js"
 }

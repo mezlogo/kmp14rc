@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "jsclient",
+  "version": "1.0.0",
+  "dependencies": {
+    "kmp14rc": "file:../build/js/packages/kmp14rc"
+  },
+  "devDependencies": {
+    "ts-loader": "^8.0.1",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack --watch",
+    "run": "node dist/bundle.js"
+  }
+}
